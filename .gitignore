@@ -1,0 +1,45 @@
+# Compiled source
+# ----------------------------------------------------------------------- #
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+
+# Packages
+# ----------------------------------------------------------------------- #
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Logs and databases
+# ----------------------------------------------------------------------- #
+
+*.log
+*.sql
+*.sqlite
+
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/.idea
+/.vagrant
+npm-debug.log
+
+# Laravel Components
+# ----------------------------------------------------------------------- #
+/vendor
+Homestead.yaml
+Homestead.json
+.env
