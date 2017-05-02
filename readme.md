@@ -1,7 +1,7 @@
 <p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Zalora-logo-black.png"></p>
 
 <p align="center">
-[![Build Status](https://travis-ci.org/jhontea/zalora-crawler.svg?branch=master)](https://travis-ci.org/jhontea/zalora-crawler)
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/jhontea/zalora-crawler.svg?branch=master" alt="Build Status"></a>
 </p>
 
 ## About App
