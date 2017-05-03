@@ -79,15 +79,27 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Zalora Crawler
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/jhontea/zalora-crawler">GitHub</a>
+                    {!! Form::open(['url' => 'crawl']) !!}
+                    {!! Form::text('url', '', ['placeholder' => 'http:// or https://']) !!}
+                    {!! Form::submit('Submit') !!}
+                    {!! Form::close() !!}
+
+                    @if(isset($data))
+                        @if(empty($data))
+                            @if(session()->has('errorURL'))
+                            <p>{{ session()->pull('errorURL') }}</p>
+                            @elseif(session()->has('errorNode'))
+                            <p>{{ session()->pull('errorNode') }}</p>
+                            @endif
+                        @else
+                        <img src="{!! $data['image'] !!}">
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
