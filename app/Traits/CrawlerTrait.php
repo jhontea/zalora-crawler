@@ -43,14 +43,19 @@ trait CrawlerTrait
                 'title'         => $crawler->filter($this->style['title'])->text(),
                 'brand'         => $crawler->filter($this->style['brand'])->text(),
                 'sku'           => $crawler->filter($this->style['sku'])->attr('value'),
-                'price'         => $crawler->filter($this->style['price'])->count()? preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
-                'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()? preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
+                'price'         => $crawler->filter($this->style['price'])->count()?
+                    preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
+                'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
+                    preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
                 'image'         => $crawler->filter($this->style['image'])->attr('src'),
-                'category'      => $crawler->filter($this->style['category'])->count()? $crawler->filter($this->style['category'])->text() : $crawler->filter($this->style['category-lastChild'])->text(),
+                'category'      => $crawler->filter($this->style['category'])->count()?
+                    $crawler->filter($this->style['category'])->text() :
+                    $crawler->filter($this->style['category-lastChild'])->text(),
             ];
             return $data;
         } catch (Exception $e) {
-            session()->put('errorNode', 'The current node list is empty. File '.$e->getTrace()[0]['file'].' line '.$e->getTrace()[0]['line']);
+            session()->put('errorNode', 'The current node list is empty. File '.
+                $e->getTrace()[0]['file'].' line '.$e->getTrace()[0]['line']);
             return 0;
         }
     }
