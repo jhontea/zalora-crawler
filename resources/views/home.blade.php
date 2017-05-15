@@ -84,6 +84,7 @@
 
                 <div class="links">
                     <a href="https://github.com/jhontea/zalora-crawler">GitHub</a>
+                    <!-- Form Input Link Zalora -->
                     {!! Form::open(['url' => 'crawl']) !!}
                     {!! Form::text('url', '', ['placeholder' => 'http:// or https://']) !!}
                     {!! Form::submit('Submit') !!}
@@ -91,13 +92,15 @@
 
                     @if(isset($data))
                         @if(empty($data))
+                            <!-- Show error from crawling data -->
                             @if(session()->has('errorURL'))
                             <p>{{ session()->pull('errorURL') }}</p>
                             @elseif(session()->has('errorNode'))
                             <p>{{ session()->pull('errorNode') }}</p>
                             @endif
                         @else
-                        <img src="{!! $data['image'] !!}">
+                            <!-- Show crawling data -->
+                            @include('crawl')
                         @endif
                     @endif
                 </div>

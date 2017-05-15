@@ -14,14 +14,16 @@
         "symfony/psr-http-message-bridge": "^1.0"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
         "barryvdh/laravel-debugbar": "^2.3",
-        "phpspec/phpspec": "~2.1",
-        "squizlabs/php_codesniffer": "2.6.*",
+        "fzaninotto/faker": "~1.4",
+        "laravel/browser-kit-testing": "^1.0",
+        "laravel/dusk": "^1.1",
+        "mockery/mockery": "0.9.*",
         "phpmd/phpmd": "2.4.*",
+        "phpspec/phpspec": "~2.1",
+        "phpunit/phpunit": "~5.7",
         "sebastian/phpcpd": "*",
+        "squizlabs/php_codesniffer": "2.6.*",
         "suitmedia/php-code-standards": "dev-master"
     },
     "autoload": {
@@ -44,7 +46,7 @@
             "@check-quality"
         ],
         "check-quality": [
-            "vendor/bin/phpcs --colors --standard=tests/myrules.xml app/",
+            "vendor/bin/phpcs --colors --standard=tests/myrules.xml app/ routes/",
             "vendor/bin/phpmd app/,tests/ text codesize,controversial,naming,unusedcode --exclude app/Validator/",
             "vendor/bin/phpcpd -vn app/ --exclude app/Validator/"
         ],

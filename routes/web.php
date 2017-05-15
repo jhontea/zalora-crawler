@@ -10,6 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'HomeController@index');
+Route::post('create', ['uses' => 'HomeController@create', 'as' => 'create']);
 Route::post('crawl', 'HomeController@crawl');

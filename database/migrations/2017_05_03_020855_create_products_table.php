@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('image_link');
             $table->boolean('is_active')->default(1);
             $table->string('category');
+            $table->string('discount');
             $table->timestamps();
         });
     }

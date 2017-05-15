@@ -8,6 +8,23 @@ use Symfony\Component\DomCrawler\Crawler;
 
 trait CrawlerTrait
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Crawler Trait
+    |--------------------------------------------------------------------------
+    |
+    | This controller handle data from front-end style zalora. If error happen,
+    | check the style from zalora website if anything changed from the original
+    | page.
+    |
+    */
+
+    /**
+     * Where to change style if anything changed from the original page
+     *
+     * @var string
+     */
+
     protected $style = [
         "title"                 => "#product-box > div > div.js-left-main > section >
                                     div.clearfix.box > div.l-productDetail.lfloat.box >
@@ -28,10 +45,16 @@ trait CrawlerTrait
                                     ul > li.active.prs.last-child > span',
     ];
 
+    /**
+     * Where to crawl the data.
+     *
+     * @return array
+     */
+
     public function crawlingData($url)
     {
         //check URL
-        $html = $this->checkURL($url);
+        $html = $this->checkUrl($url);
         if (!$html) {
             return 0;
         }
@@ -51,7 +74,11 @@ trait CrawlerTrait
                 'category'      => $crawler->filter($this->style['category'])->count()?
                     $crawler->filter($this->style['category'])->text() :
                     $crawler->filter($this->style['category-lastChild'])->text(),
+                'url' => $url
             ];
+            $data['discount'] = $data['priceDiscount']?
+                round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
+
             return $data;
         } catch (Exception $e) {
             session()->put('errorNode', 'The current node list is empty. File '.
@@ -60,7 +87,13 @@ trait CrawlerTrait
         }
     }
 
-    public function checkURL($url)
+    /**
+     * Where to check the url five times.
+     *
+     * @return boolean
+     */
+
+    public function checkUrl($url)
     {
         $client = new Client();
         $maxCheck = 5;
