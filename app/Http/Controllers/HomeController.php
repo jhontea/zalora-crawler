@@ -12,22 +12,28 @@ class HomeController extends Controller
 {
     use CrawlerTrait;
 
+    public function __construct(Product $products)
+    {
+        $this->products = $products;
+    }
+
     public function index()
     {
-        return view('home');
+        $products = $this->products->all();
+        return view('home', compact('products'));
     }
 
     public function create()
     {
         $data = request()->all();
-        Product::create($data);
+        $this->products->create($data);
 
         return redirect('/');
     }
 
     public function crawl()
     {
-        $products = Product::where('url', request()->get('url'));
+        $products = $this->products->where('url', request()->get('url'));
 
         //check exist product
         if ($products->exists()) {
@@ -43,6 +49,6 @@ class HomeController extends Controller
         }
 
 
-        return view('home', compact('data'));
+        return view('home', ['data' => $data, 'products' => $this->products->all()]);
     }
 }

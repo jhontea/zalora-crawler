@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-menu {
+    padding: 5px;
+}
+
+.nav {
+    background: black;
+    padding: 0px;
+    position: fixed;
+    z-index: 999;
+}
+
+.sub-nav {
+    background: #dfdfdf;
+    padding: 20px 0px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+    padding: 0px 40px;
+}
+
+h2 {
+    font-size: 16px;
+    display: block;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-title {
+    margin-top: 10px;
+    height: 40px;
+}
+
+span {
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 0px 50px;
+}
+
+.fa {
+  color: white;
+}
+
+.clear {
+    clear: both;
+}
+
+.item {
+    padding: 30px 20px;
+}
+
+.view-zalora {
+    border: 1px solid #fff;
+    padding: 4px 14px;
+    background-color: #333;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 5px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
