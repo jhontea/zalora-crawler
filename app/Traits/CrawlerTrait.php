@@ -37,8 +37,12 @@ trait CrawlerTrait
         'priceDiscount'         => '#priceAndEd > div > div.price-box__special-price >
                                     span > span.js-detail_updateSku_lowestPrice > span.value',
         'image'                 => '#prdImage',
-        'category'              => '#content > div.l-pageWrapper.l-productPage > div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl > div.b-breadcrumb.lfloat > ul > li:nth-child(3) > a > span',
-        'category-lastChild'    => '#content > div.l-pageWrapper.l-productPage > div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl > div.b-breadcrumb.lfloat > ul > li.active.prs.last-child > span',
+        'category'              => '#content > div.l-pageWrapper.l-productPage >
+                                    div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl >
+                                    div.b-breadcrumb.lfloat > ul > li:nth-child(3) > a > span',
+        'category-lastChild'    => '#content > div.l-pageWrapper.l-productPage >
+                                    div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl >
+                                    div.b-breadcrumb.lfloat > ul > li.active.prs.last-child > span',
     ];
 
     /**
@@ -58,6 +62,7 @@ trait CrawlerTrait
         //check Node List
         try {
             $crawler = new Crawler($html);
+            //data crawling from style
             $data = [
                 'title'         => $crawler->filter($this->style['title'])->text(),
                 'brand'         => $crawler->filter($this->style['brand'])->text(),
@@ -66,16 +71,18 @@ trait CrawlerTrait
                     preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
                 'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
                     preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
-                'image_link'         => $crawler->filter($this->style['image'])->attr('src'),
+                'image_link'    => $crawler->filter($this->style['image'])->attr('src'),
                 'category'      => $crawler->filter($this->style['category'])->count()?
                     $crawler->filter($this->style['category'])->text() :
                     $crawler->filter($this->style['category-lastChild'])->text(),
-                'url' => $url
+                'url'           => $url
             ];
             $data['discount'] = $data['priceDiscount']?
                 round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
+
             return $data;
         } catch (Exception $e) {
+            //show error message from line on code
             session()->put('errorNode', 'The current node list is empty. File '.
                 $e->getTrace()[0]['file'].' line '.$e->getTrace()[0]['line']);
             return 0;
@@ -99,11 +106,14 @@ trait CrawlerTrait
                 return $request;
             } catch (Exception $e) {
                 if ($e->getCode() == 404) {
+                    //url is gone
                     session()->put('errorURL', 'URL not available');
                 } else {
                     if (array_key_exists('Host', $e->getRequest()->getHeaders())) {
+                        //check connection
                         session()->put('errorURL', 'Time has running out. Please check the connection');
                     } else {
+                        //url must be using http or https
                         session()->put('errorURL', 'Must be a valid URL.');
                     }
                 }
