@@ -19,10 +19,19 @@ class HomeController extends Controller
 
     public function crawl()
     {
-        //use crawler trait to get the data
-        $data = $this->crawlingData(request()->get('url'));
-        //check if the data already exist
-        $data['exist'] = Product::where('url', request()->get('url'))->exists();
+        $products = Product::where('url', request()->get('url'));
+
+        if ($products->exists()) {
+            $data = $products->first();
+            $data['exist'] = true;
+        } else {
+            //use crawler trait to get the data
+            $data = $this->crawlingData(request()->get('url'));
+            if ($data) {
+                $data['exist'] = false;
+            }
+        }
+
 
         return view('home', compact('data'));
     }

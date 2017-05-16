@@ -1,4 +1,4 @@
-                            <img src="{!! $data['image'] !!}">
+                            <img src="{!! $data['image_link'] !!}">
                             @if($data['exist'])
                             <center>
                                 <p>Data already exist</p>
@@ -14,7 +14,7 @@
                             {!! Form::hidden('price_discount', $data['priceDiscount']) !!}
                             {!! Form::hidden('category', $data['category']) !!}
                             {!! Form::hidden('discount', $data['discount']) !!}
-                            {!! Form::hidden('image_link', $data['image']) !!}
+                            {!! Form::hidden('image_link', $data['image_link']) !!}
                             {!! Form::submit('Save') !!}
                             {!! Form::close() !!}
                             @endif

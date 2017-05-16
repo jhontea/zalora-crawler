@@ -37,12 +37,8 @@ trait CrawlerTrait
         'priceDiscount'         => '#priceAndEd > div > div.price-box__special-price >
                                     span > span.js-detail_updateSku_lowestPrice > span.value',
         'image'                 => '#prdImage',
-        'category'              => '#content > div.l-pageWrapper.l-productPage >
-                                    div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl >
-                                    div.b-breadcrumb.lfloat > ul > li:nth-child(3) > a > span',
-        'category-lastChild'    => '#content > div.l-pageWrapper.l-productPage >
-                                    div.breadcrumb.box.title-bar.pal > div.b-breadcrumb.lfloat >
-                                    ul > li.active.prs.last-child > span',
+        'category'              => '#content > div.l-pageWrapper.l-productPage > div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl > div.b-breadcrumb.lfloat > ul > li:nth-child(3) > a > span',
+        'category-lastChild'    => '#content > div.l-pageWrapper.l-productPage > div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl > div.b-breadcrumb.lfloat > ul > li.active.prs.last-child > span',
     ];
 
     /**
@@ -70,7 +66,7 @@ trait CrawlerTrait
                     preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
                 'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
                     preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
-                'image'         => $crawler->filter($this->style['image'])->attr('src'),
+                'image_link'         => $crawler->filter($this->style['image'])->attr('src'),
                 'category'      => $crawler->filter($this->style['category'])->count()?
                     $crawler->filter($this->style['category'])->text() :
                     $crawler->filter($this->style['category-lastChild'])->text(),
