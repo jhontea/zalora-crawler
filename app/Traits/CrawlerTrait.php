@@ -38,8 +38,8 @@ trait CrawlerTrait
                                     span > span.js-detail_updateSku_lowestPrice > span.value',
         'image'                 => '#prdImage',
         'category'              => '#content > div.l-pageWrapper.l-productPage >
-                                    div.breadcrumb.box.title-bar.pal > div.b-breadcrumb.lfloat >
-                                    ul > li:nth-child(3) > a > span',
+                                    div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl >
+                                    div.b-breadcrumb.lfloat > ul > li:nth-child(3) > a > span',
         'category-lastChild'    => '#content > div.l-pageWrapper.l-productPage >
                                     div.breadcrumb.box.title-bar.pal > div.b-breadcrumb.lfloat >
                                     ul > li.active.prs.last-child > span',
@@ -78,7 +78,6 @@ trait CrawlerTrait
             ];
             $data['discount'] = $data['priceDiscount']?
                 round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
-
             return $data;
         } catch (Exception $e) {
             session()->put('errorNode', 'The current node list is empty. File '.
