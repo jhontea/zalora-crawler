@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
-    @include('_include.head')
+    @include('_include.header')
     <body>
     <div class="col-md-12 nav">
         <div class="col-md-10 col-md-offset-1 main-menu">
@@ -12,6 +12,7 @@
     </div>
 
     <div class="sub-nav">
+    tes
     </div>
 
     <div class="col-md-10 col-md-offset-1">

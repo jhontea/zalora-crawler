@@ -20,4 +20,9 @@ class Product extends Model
         'is_active',
         'category'
     ];
+
+    public function priceChanges()
+    {
+        return $this->hasMany(PriceChange::class, 'item_id');
+    }
 }

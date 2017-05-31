@@ -15,7 +15,7 @@
                             {!! Form::hidden('category', $data['category']) !!}
                             {!! Form::hidden('discount', $data['discount']) !!}
                             {!! Form::hidden('image_link', $data['image_link']) !!}
-                            <a href="{{ asset('/') }}"><button>Home</button></a>
+                            <a href="{{ asset('/') }}">Home</a>
                             {!! Form::submit('Save') !!}
                             {!! Form::close() !!}
                             @endif
