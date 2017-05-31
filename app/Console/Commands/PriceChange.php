@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Illuminate\Console\Command;
 
 class PriceChange extends Command
 {

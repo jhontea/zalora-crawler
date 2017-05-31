@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

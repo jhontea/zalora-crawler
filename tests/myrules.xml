@@ -5,22 +5,39 @@
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
         <severity>0</severity>
     </rule>
+
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
     <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
     <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
     <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
+
     <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+    <!-- Doc comment -->
+    <!-- <rule ref="Squiz.Commenting.FunctionComment"/> -->
+    <rule ref="CakePHP.Commenting.FunctionCommentType"/>
+
     <rule ref="Generic.Files.OneClassPerFile"/>
     <rule ref="Generic.Files.OneInterfacePerFile"/>
     <rule ref="Generic.Files.OneTraitPerFile"/>
+
     <rule ref="Generic.Metrics.CyclomaticComplexity"/>
     <rule ref="Generic.Metrics.NestingLevel"/>
+
     <rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
+
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
     <rule ref="Generic.PHP.NoSilencedErrors"/>
+
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+
+    <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+
+    <rule ref="CakePHP.Formatting.UseInAlphabeticalOrder"/>
 </ruleset>
