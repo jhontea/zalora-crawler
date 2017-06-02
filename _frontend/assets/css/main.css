@@ -49,6 +49,10 @@ h2 {
     border-bottom: 1px solid #ccc;
 }
 
+.message {
+    margin-top: 20px;
+}
+
 .product-title {
     margin-top: 10px;
     height: 40px;
@@ -87,19 +91,16 @@ span {
     padding: 30px 20px;
 }
 
-.zalora-link {
-    background-color: #333;
-}
-
 .zalora-button {
     border: 0px solid #fff;
-    padding: 0px 20px;
+    padding: 10px 20px;
     background-color: #333;
     color: #fff;
     text-transform: uppercase;
     margin: 5px 0;
     font-weight: bold;
     cursor: pointer;
+    width: 100%;
 }
 
 .body {

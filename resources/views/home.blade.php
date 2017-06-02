@@ -5,8 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12 nav">
         <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 menu">
             <h1>Zalora Crawler</h1>
-            <span><i class="fa fa-plus-circle fa-2x"></i></span>
-
+            <!-- <span><i class="fa fa-plus-circle fa-2x"></i></span> -->
             <div class="clear"></div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 menu">
@@ -25,19 +24,25 @@
                 {!! Form::submit('Submit') !!}
                 {!! Form::close() !!}
 
+                <div class="message">
                 @if(isset($data))
                     @if(empty($data))
-                        Show error from crawling data
                         @if(session()->has('errorURL'))
-                        <p>{{ session()->pull('errorURL') }}</p>
+                        <div class="alert alert-danger alert-dismissable fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ session()->pull('errorURL') }}
+                        </div>
                         @elseif(session()->has('errorNode'))
-                        <p>{{ session()->pull('errorNode') }}</p>
+                        <div class="alert alert-danger alert-dismissable fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ session()->pull('errorNode') }}
+                        </div>
                         @endif
                     @else
-                        Show crawling data
                         @include('crawl')
                     @endif
                 @endif
+                </div>
             </div>
 
 
@@ -58,7 +63,7 @@
                         </p>
                     </div>
 
-                    <div class="zalora-link text-center">
+                    <div class="text-center">
                         <a href="{{ $product->url }}" target="_blank">
                             <button class="zalora-button" type="button">View on Zalora</button>
                         </a>
