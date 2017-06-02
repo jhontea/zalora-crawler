@@ -46,8 +46,6 @@ class HomeController extends Controller
                 $data['exist'] = false;
             }
         }
-
-
         return view('home', ['data' => $data, 'products' => $this->products->all()]);
     }
 }

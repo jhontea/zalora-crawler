@@ -18,8 +18,6 @@
     <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.Commenting.Todo"/>
     <rule ref="Squiz.Commenting.DocCommentAlignment"/>
-    <!-- Doc comment -->
-    <!-- <rule ref="Squiz.Commenting.FunctionComment"/> -->
     <rule ref="CakePHP.Commenting.FunctionCommentType"/>
 
     <rule ref="Generic.Files.OneClassPerFile"/>
