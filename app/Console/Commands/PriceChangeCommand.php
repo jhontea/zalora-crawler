@@ -97,13 +97,15 @@ class PriceChangeCommand extends Command
         $pivot = $product->priceChanges->where('pivot', 1)->first();
 
         if ($data['priceDiscount'] < $pivot->price_discount) {
+            $pivot->pivot = 0;
+            $pivot->save();
             $this->storeData($data, $product, 1);
-            $pivot->update(['pivot' => 0]);
         } elseif ($data['priceDiscount'] > $pivot->price_discount) {
             $this->storeData($data, $product, 0);
         } elseif ($data['price'] < $pivot->price) {
             $this->storeData($data, $product, 1);
-            $pivot->update(['pivot' => 0]);
+            $pivot->pivot = 0;
+            $pivot->save();
         } elseif ($data['price'] > $pivot->price) {
             $this->storeData($data, $product, 0);
         } else {

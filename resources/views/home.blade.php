@@ -56,10 +56,10 @@
 
                     <div class="price">
                         <p class="@if($product->price_discount) price-striketrough @endif">
-                            <em>Rp {{ $product->price }}</em>
+                            <em>Rp {{ number_format((float)$product->price, 0, '', '.') }} </em>
                         </p>
                         <p class="discount-price">
-                            <em>{{ $product->price_discount? 'Rp '.$product->price_discount : ' ' }}</em>
+                            <em>{{ $product->price_discount? 'Rp '.number_format((float)$product->price_discount, 0, '', '.') : ' ' }}</em>
                         </p>
                     </div>
 

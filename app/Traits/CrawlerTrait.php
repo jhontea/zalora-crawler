@@ -34,8 +34,8 @@ trait CrawlerTrait
                                     div.prd-hd.box > h1 > div.js-prd-brand.product__brand > a',
         'sku'                   => '#configSku',
         'price'                 => '#priceAndEd > div > div > span',
-        'priceDiscount'         => '#priceAndEd > div > div.price-box__special-price >
-                                    span > span.js-detail_updateSku_lowestPrice > span.value',
+        'priceDiscount'         => '#priceAndEd > div > div.price-box__special-price > span >
+                                    span.js-detail_updateSku_lowestPrice',
         'image'                 => '#prdImage',
         'category'              => '#content > div.l-pageWrapper.l-productPage >
                                     div.breadcrumb.box.title-bar.ui-bg-light-primary.pvl >

@@ -54,6 +54,8 @@ h2 {
 }
 
 .product-title {
+    color: #494949;
+    font-size: 14px;
     margin-top: 10px;
     height: 40px;
 }
