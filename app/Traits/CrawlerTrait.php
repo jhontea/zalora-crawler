@@ -58,39 +58,14 @@ trait CrawlerTrait
         if (!$html) {
             return 0;
         }
-
         //check Node List
-        try {
-            $crawler = new Crawler($html);
-            //data crawling from style
-            $data = [
-                'title'         => $crawler->filter($this->style['title'])->text(),
-                'brand'         => $crawler->filter($this->style['brand'])->text(),
-                'sku'           => $crawler->filter($this->style['sku'])->attr('value'),
-                'price'         => $crawler->filter($this->style['price'])->count()?
-                    preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
-                'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
-                    preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
-                'image_link'    => $crawler->filter($this->style['image'])->attr('src'),
-                'category'      => $crawler->filter($this->style['category'])->count()?
-                    $crawler->filter($this->style['category'])->text() :
-                    $crawler->filter($this->style['category-lastChild'])->text(),
-                'url'           => $url
-            ];
-            $data['discount'] = $data['priceDiscount']?
-                round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
-
-            return $data;
-        } catch (Exception $e) {
-            //show error message from line on code
-            session()->put('errorNode', 'The current node list is empty. File '.
-                $e->getTrace()[0]['file'].' line '.$e->getTrace()[0]['line']);
-            return 0;
-        }
+        return $this->checkNode($html, $url);
     }
 
     /**
-     * Where to check the url five times.
+     * Check the url five times.
+     *
+     * @param url get url from data or request
      *
      * @return boolean
      */
@@ -121,5 +96,44 @@ trait CrawlerTrait
             }
         }
         return 0;
+    }
+
+    /**
+     * Check the node for crawling.
+     *
+     * @param html DOM from checkurl.
+     *
+     * @return array
+     */
+
+    public function checkNode($html, $url)
+    {
+        try {
+            $crawler = new Crawler($html);
+            //data crawling from style
+            $data = [
+                'title'         => $crawler->filter($this->style['title'])->text(),
+                'brand'         => $crawler->filter($this->style['brand'])->text(),
+                'sku'           => $crawler->filter($this->style['sku'])->attr('value'),
+                'price'         => $crawler->filter($this->style['price'])->count()?
+                    preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
+                'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
+                    preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
+                'image_link'    => $crawler->filter($this->style['image'])->attr('src'),
+                'category'      => $crawler->filter($this->style['category'])->count()?
+                    $crawler->filter($this->style['category'])->text() :
+                    $crawler->filter($this->style['category-lastChild'])->text(),
+                'url'           => $url
+            ];
+            $data['discount'] = $data['priceDiscount']?
+                round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
+
+            return $data;
+        } catch (Exception $e) {
+            //show error message from line on code
+            session()->put('errorNode', 'The current node list is empty. File '.
+                $e->getTrace()[0]['file'].' line '.$e->getTrace()[0]['line']);
+            return 0;
+        }
     }
 }

@@ -51,23 +51,28 @@ class PriceChangeCommand extends Command
             //check data
             if (empty($data)) {
                 //Show error from crawling data
-                if (session()->has('errorURL')) {
-                    //url not available, SEND EMAIL
-                    $this->info(session()->get('errorURL'));
-                    $data = $product;
-                    $data['error'] =  session()->pull('errorURL');
-                    $this->sendNotification($data, 'error');
-                } elseif (session()->has('errorNode')) {
-                    //frontend has change, SEND EMAIL
-                    $this->info(session()->get('errorNode'));
-                    $data = $product;
-                    $data['error'] = session()->pull('errorNode');
-                    $this->sendNotification($data, 'error');
-                }
+                $this->checkErrorEmptyData($data, $product);
             } else {
                 //Process the data
                 $this->checkDataExist($data, $product);
             }
+        }
+    }
+
+    public function checkErrorEmptyData($data, $product)
+    {
+        if (session()->has('errorURL')) {
+            //url not available, SEND EMAIL
+            $this->info(session()->get('errorURL'));
+            $data = $product;
+            $data['error'] =  session()->pull('errorURL');
+            $this->sendNotification($data, 'error');
+        } elseif (session()->has('errorNode')) {
+            //style has change, SEND EMAIL
+            $this->info(session()->get('errorNode'));
+            $data = $product;
+            $data['error'] = session()->pull('errorNode');
+            $this->sendNotification($data, 'error');
         }
     }
 

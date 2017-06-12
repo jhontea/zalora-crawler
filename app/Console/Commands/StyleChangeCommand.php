@@ -40,7 +40,8 @@ class StyleChangeCommand extends Command
     ];
 
     /**
-     * The attribute when url's product not available
+     * The attribute when data is empty
+     * due to url's product not available or style has change
      *
      * @var integer
      */
@@ -82,7 +83,7 @@ class StyleChangeCommand extends Command
         // check style with counter
         // using array_keys because array_value not used yet.
         foreach (array_keys($this->attribute) as $value) {
-            $this->checkStyle($products, $value);
+            $this->compareCountAttribute($products, $value);
         }
     }
 
@@ -107,7 +108,7 @@ class StyleChangeCommand extends Command
      * @param $products Product from database.
      * @param $key Array key from attribute.
      */
-    public function checkStyle($products, $key)
+    public function compareCountAttribute($products, $key)
     {
         if ($this->attribute[$key] == $products->count() - $this->emptyData) {
             $this->info($key.' the style has change');
