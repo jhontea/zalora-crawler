@@ -10,12 +10,17 @@ body {
     color: #000;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 200;
-    height: 100vh;
     margin: 0;
 }
 
 .menu {
     padding: 0px;
+}
+
+.menu a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .nav {
@@ -32,7 +37,7 @@ body {
     height: 30px;
 }
 
-h1 {
+h1.title {
     color: #fff;
     font-size: 20px;
     font-weight: bold;
@@ -74,15 +79,22 @@ p.discount-price {
     color: red;
 }
 
-span {
-    float: right;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    padding: 0px 50px;
+.price-status {
+    position: absolute;
+    top: 35px;
+    right: 10%;
 }
 
-.fa {
-  color: white;
+.fa-price-lower {
+    color: #87D37C;
+}
+
+.fa-price-higher {
+    color: #EF4836;
+}
+
+.fa-price-flat {
+    color: #333;
 }
 
 .clear {
@@ -91,6 +103,52 @@ span {
 
 .item {
     padding: 30px 20px;
+}
+
+h1.item-brand {
+    margin-bottom: 5px;
+}
+
+h3.item-title {
+    margin-top: 0;
+}
+
+p.item-price {
+    margin-bottom: 2px;
+}
+
+.view-detail {
+    opacity: 0;
+    position: absolute;
+    border: 0px solid #fff;
+    padding: 10px 20px;
+    background-color: #333;
+    cursor: pointer;
+    z-index: 999;
+
+    top:30%;
+    left:50%;
+    padding:15px;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+#overlay {
+    background:rgba(255, 255, 255, .75);
+    opacity:1;
+    -webkit-transition: opacity .25s ease;
+}
+
+#overlay a {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.item:hover #overlay, .item:hover .view-detail {
+    opacity:0.9;
 }
 
 .zalora-button {

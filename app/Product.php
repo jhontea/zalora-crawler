@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->hasMany(PriceChange::class, 'item_id');
     }
+
+    public function priceNow()
+    {
+        return $this->hasOne(PriceNow::class, 'item_id');
+    }
 }

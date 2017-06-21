@@ -127,7 +127,7 @@ class StyleChangeCommand extends Command
      */
     public function sendNotification($data, $type)
     {
-        Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
+        Mail::later(10, 'emails.'.$type, compact('data'), function ($message) use ($data) {
             $message->to('hafizh@suitmedia.com', 'hafizh')
                 ->subject('Zalora Change Style');
         });

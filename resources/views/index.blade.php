@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    @include('_include.header')
-    <body>
-    <div class="col-md-12 col-sm-12 col-xs-12 nav">
-        <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 menu">
-            <h1>Zalora Crawler</h1>
-            <!-- <span><i class="fa fa-plus-circle fa-2x"></i></span> -->
-            <div class="clear"></div>
-        </div>
-        <div class="col-md-12 col-sm-12 col-xs-12 menu">
-            <div class="sub-nav">
-                <div class="col-md-offset-1">
-                    Sub-Nav
-                </div>
-            </div>
-        </div>
-    </div>
+@extends('layout.base')
+
+@section('page-content')
     <div class="body">
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
@@ -48,13 +33,24 @@
 
             @foreach($products as $product)
                 <div class="col-md-3 col-sm-6 item">
-                    <img src="{{ $product->image_link }}" class="img-responsive"/>
+                    <div id="overlay">
+                        <a href="{{ asset('detail/'.$product->sku) }}">
+                            <div class="view-detail">
+                                View detail
+                            </div>
+                            <img src="{{ $product->image_link }}" class="img-responsive"/>
+                        </a>
+                    </div>
                     <h2>{{ $product->brand }}</h2>
                     <div class="product-title">
                         <p>{{ $product->title }}</p>
                     </div>
 
-                    @if($product->priceNow)
+                    @if(!$product->is_active)
+                        <div class="price-status">
+                            <i class="fa fa-close fa-price-higher fa-2x"></i>
+                        </div>
+                    @elseif($product->priceNow)
                         <div class="price-status">
                             @if($product->priceNow->status == 'lower')
                                 <i class="fa fa-arrow-down fa-price-lower fa-2x"></i>
@@ -86,5 +82,4 @@
             @endforeach
         </div>
     </div>
-    </body>
-</html>
+@endsection

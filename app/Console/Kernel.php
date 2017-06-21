@@ -3,7 +3,9 @@
 namespace App\Console;
 
 use App\Console\Commands\PriceChangeCommand;
+use App\Console\Commands\PriceNowCommand;
 use App\Console\Commands\StyleChangeCommand;
+use App\Console\Commands\UrlReactiveCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +18,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         PriceChangeCommand::class,
+        PriceNowCommand::class,
         StyleChangeCommand::class,
+        UrlReactiveCommand::class,
     ];
 
     /**
@@ -51,6 +55,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('price:change')->dailyAt('10:00');
+        $schedule->command('url:check')->dailyAt('10:00');
+        $schedule->command('price:now')->twiceDaily(9, 10);
         $schedule->command('style:change')->dailyAt('8:00');
     }
 }

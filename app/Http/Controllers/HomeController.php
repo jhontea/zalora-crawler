@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\PriceNow;
 use App\Product;
 use App\Traits\CrawlerTrait;
 use Illuminate\Http\Request;
@@ -19,13 +20,26 @@ class HomeController extends Controller
     public function index()
     {
         $products = $this->products->all();
-        return view('home', compact('products'));
+        return view('index', compact('products'));
+    }
+
+    public function show($sku)
+    {
+        $product = $this->products->where('sku', $sku)->first();
+        return view('detail', compact('product'));
     }
 
     public function create()
     {
         $data = request()->all();
-        $this->products->create($data);
+        $product = $this->products->create($data);
+
+        PriceNow::create([
+            'item_id' => $product->id,
+            'price' => $data['price'],
+            'price_discount' => $data['price_discount'],
+            'status' => 'equal'
+        ]);
 
         return redirect('/');
     }

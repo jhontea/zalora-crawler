@@ -62,16 +62,21 @@ class PriceChangeCommand extends Command
     public function checkErrorEmptyData($data, $product)
     {
         if (session()->has('errorURL')) {
+            //update to non-active
+            $product->update(['is_active' => 0]);
+
             //url not available, SEND EMAIL
-            $this->info(session()->get('errorURL'));
             $data = $product;
             $data['error'] =  session()->pull('errorURL');
+
+            $this->info(session()->get('errorURL'));
             $this->sendNotification($data, 'error');
         } elseif (session()->has('errorNode')) {
             //style has change, SEND EMAIL
-            $this->info(session()->get('errorNode'));
             $data = $product;
             $data['error'] = session()->pull('errorNode');
+
+            $this->info(session()->get('errorNode'));
             $this->sendNotification($data, 'error');
         }
     }
@@ -94,7 +99,11 @@ class PriceChangeCommand extends Command
 
     public function newPriceChange($data, $product)
     {
-        $this->storeData($data, $product, 1);
+        if ($data['priceDiscount']) {
+            $this->storeData($data, $product, 1);
+        } else {
+            $this->info($product->title." Price hasn't change");
+        }
     }
 
     public function oldPriceChange($data, $product)
