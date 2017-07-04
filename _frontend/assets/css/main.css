@@ -33,7 +33,7 @@ body {
 .sub-nav {
     background: #dfdfdf;
     padding-top: 5px;
-    padding-left: 40px;
+    padding-left: 0px;
     height: 30px;
 }
 
@@ -43,7 +43,7 @@ h1.title {
     font-weight: bold;
     text-transform: uppercase;
     float: left;
-    padding: 0px 40px;
+    padding: 0px 0px;
 }
 
 h2 {
@@ -101,8 +101,14 @@ p.discount-price {
     clear: both;
 }
 
+.all-product {
+    margin: 0px 10px;
+    padding: 0px 80px;
+}
+
 .item {
     padding: 30px 20px;
+    margin: 0px 0px 0px 0px;
 }
 
 h1.item-brand {

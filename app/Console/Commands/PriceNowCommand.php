@@ -104,7 +104,7 @@ class PriceNowCommand extends Command
             $product->priceNow->update([
                 'status' => 'equal'
             ]);
-            $status = "change to equal due the product price has not change more than 2 weeks"
+            $status = "change to equal due the product price has not change more than 2 weeks";
         }
 
         $this->info('product '.$product->title.' change to '.$status);

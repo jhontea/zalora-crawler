@@ -2,7 +2,7 @@
 
 @section('page-content')
     <div class="body">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="all-product">
             <div class="text-center">
                 {!! Form::open(['url' => 'crawl']) !!}
                 {!! Form::text('url', '', ['placeholder' => 'http:// or https://']) !!}
