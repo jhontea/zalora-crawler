@@ -64,11 +64,11 @@
 
                     <div class="price">
                     @if($product->priceNow)
-                        <p class="@if($product->priceNow['price_discount']) price-striketrough @endif">
+                        <p class="@if($product->priceNow['price_discount'] != $product->priceNow['price']) price-striketrough @endif">
                             <em>Rp {{ number_format((float)$product->priceNow['price'], 0, '', '.') }} </em>
                         </p>
                         <p class="discount-price">
-                            <em>{{ $product->priceNow['price_discount']? 'Rp '.number_format((float)$product->priceNow['price_discount'], 0, '', '.') : ' ' }}</em>
+                            <em>{{ ($product->priceNow['price_discount'] != $product->priceNow['price'])? 'Rp '.number_format((float)$product->priceNow['price_discount'], 0, '', '.') : ' ' }}</em>
                         </p>
                     @endif
                     </div>

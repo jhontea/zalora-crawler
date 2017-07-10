@@ -118,7 +118,8 @@ trait CrawlerTrait
                 'price'         => $crawler->filter($this->style['price'])->count()?
                     preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
                 'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
-                    preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) : '',
+                    preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) :
+                    preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()),
                 'image_link'    => $crawler->filter($this->style['image'])->attr('src'),
                 'category'      => $crawler->filter($this->style['category'])->count()?
                     $crawler->filter($this->style['category'])->text() :

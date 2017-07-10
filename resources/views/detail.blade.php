@@ -104,6 +104,11 @@ var myChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
+        elements: {
+            line: {
+                tension: 0, // disables bezier curves
+            }
+        },
         title:{
             display:true,
             text:'Price Change'
