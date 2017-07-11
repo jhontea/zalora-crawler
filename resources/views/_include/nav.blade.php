@@ -4,11 +4,16 @@
             <!-- <span><i class="fa fa-plus-circle fa-2x"></i></span> -->
             <div class="clear"></div>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12 menu">
-            <div class="sub-nav">
-                <div class="col-md-offset-1">
-                    Sub-Nav
-                </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 sub-nav">
+            <div class="col-md-offset-1">
+                <ul>
+                <li class="sub-title">Semua</li>
+                @foreach(App\Product::getCachedCategory() as $key => $category)
+                    @if(strtolower($key) != "style")
+                    <li class="sub-title">{{ $key }} <!-- ({{ $category->count() }}) --></li>
+                    @endif
+                @endforeach
+                </ul>
             </div>
         </div>
     </div>

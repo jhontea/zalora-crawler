@@ -3,7 +3,7 @@
 @section('page-content')
     <div class="body">
         <div class="all-product">
-            <div class="text-center">
+            <!-- <div class="text-center">
                 {!! Form::open(['url' => 'crawl']) !!}
                 {!! Form::text('url', '', ['placeholder' => 'http:// or https://']) !!}
                 {!! Form::submit('Submit') !!}
@@ -28,8 +28,9 @@
                     @endif
                 @endif
                 </div>
-            </div>
+            </div> -->
 
+            <div class="text-center">{{ $products->links() }}</div>
 
             @foreach($products as $product)
                 <div class="col-md-3 col-sm-6 item">
@@ -80,6 +81,7 @@
                     </div>
                 </div>
             @endforeach
+            <div class="text-center">{{ $products->links() }}</div>
         </div>
     </div>
 @endsection

@@ -14,7 +14,7 @@ body {
 }
 
 .menu {
-    padding: 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .menu a {
@@ -34,16 +34,31 @@ body {
     background: #dfdfdf;
     padding-top: 5px;
     padding-left: 0px;
-    height: 30px;
+    height: 47px;
+}
+
+.sub-title {
+    padding: 2px 30px 0px 0px;
+    text-decoration: none;
+    font-size: 13px;
+    float: left;
+    text-transform: uppercase;
+    color: #333;
+    list-style: none;
+}
+
+ul {
+    padding-left: 0px;
 }
 
 h1.title {
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     text-transform: uppercase;
     float: left;
-    padding: 0px 0px;
+    padding: 0px 0px 0px 0px;
+    margin-bottom: 15px;
 }
 
 h2 {
@@ -170,5 +185,40 @@ p.item-price {
 }
 
 .body {
-    padding-top: 100px;
+    padding-top: 130px;
+}
+
+/* pagination */
+.pagination > li > a,
+.pagination > li > span {
+    color: #333;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+@media screen and (max-width: 480px) {
+    .sub-title {
+        font-size: 5px;
+        padding: 4px 7px 0px 0px;
+    }
+
+    .sub-nav {
+        padding-top: 0px;
+        padding-left: 0px;
+        height: 32px;
+    }
+
+    h1.title {
+        font-size: 20px;
+        padding: 0px 0px 0px 38px;
+        margin-bottom: 15px;
+    }
 }
