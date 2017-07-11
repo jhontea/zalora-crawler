@@ -67,7 +67,7 @@ class StyleChangeCommand extends Command
         //get all active products
         $products = Product::where('is_active', 1)->get();
 
-        foreach ($products as $product) {
+        foreach ($products as $key => $product) {
             $data = $this->crawlingData($product->url);
 
             //check empty data
@@ -77,6 +77,10 @@ class StyleChangeCommand extends Command
                 session()->pull('errorNode');
             } else {
                 $this->countAtrribute($data);
+            }
+
+            if ($key == 30) {
+                break;
             }
         }
 
@@ -97,7 +101,7 @@ class StyleChangeCommand extends Command
         $data['brand']? $this->attribute['brand'] += 0 : $this->attribute['brand'] += 1;
         $data['sku']? $this->attribute['sku'] += 0 : $this->attribute['sku'] += 1;
         $data['price']? $this->attribute['price'] += 0 : $this->attribute['price'] += 1;
-        $data['priceDiscount']? $this->attribute['priceDiscount'] += 0 : $this->attribute['priceDiscount'] += 1;
+        $data['price_discount']? $this->attribute['priceDiscount'] += 0 : $this->attribute['priceDiscount'] += 1;
         $data['image_link']? $this->attribute['imageLink'] += 0 : $this->attribute['imageLink'] += 1;
         $data['category']? $this->attribute['category'] += 0 : $this->attribute['category'] += 1;
     }

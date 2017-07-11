@@ -11,7 +11,7 @@
                             {!! Form::hidden('sku', $data['sku']) !!}
                             {!! Form::hidden('url', $data['url']) !!}
                             {!! Form::hidden('price', $data['price']) !!}
-                            {!! Form::hidden('price_discount', $data['priceDiscount']) !!}
+                            {!! Form::hidden('price_discount', $data['price_discount']) !!}
                             {!! Form::hidden('category', $data['category']) !!}
                             {!! Form::hidden('discount', $data['discount']) !!}
                             {!! Form::hidden('image_link', $data['image_link']) !!}

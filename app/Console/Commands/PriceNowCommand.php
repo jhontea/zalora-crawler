@@ -96,7 +96,7 @@ class PriceNowCommand extends Command
     {
         $product->priceNow->update([
             'price' => $data['price'],
-            'price_discount' => $data['priceDiscount'],
+            'price_discount' => $data['price_discount'],
             'status' => $status
         ]);
 

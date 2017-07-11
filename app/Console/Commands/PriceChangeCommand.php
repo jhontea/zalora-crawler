@@ -45,7 +45,7 @@ class PriceChangeCommand extends Command
         //get all active products
         $products = Product::where('is_active', 1)->get();
 
-        foreach ($products as $product) {
+        foreach ($products as $key => $product) {
             $data = $this->crawlingData($product->url);
 
             //check data
@@ -55,6 +55,9 @@ class PriceChangeCommand extends Command
             } else {
                 //Process the data
                 $this->checkDataExist($data, $product);
+                if ($key % 20 == 0) {
+                    sleep(3);
+                }
             }
         }
     }
@@ -84,7 +87,7 @@ class PriceChangeCommand extends Command
     public function checkDataExist($data, $product)
     {
         //exist data
-        $exist = $product->where('price', $data['price'])->where('price_discount', $data['priceDiscount'])->exists();
+        $exist = $product->where('price', $data['price'])->where('price_discount', $data['price_discount'])->exists();
 
         if ($exist) {
             $this->info($product->title." Price hasn't change");
@@ -99,7 +102,7 @@ class PriceChangeCommand extends Command
 
     public function newPriceChange($data, $product)
     {
-        if ($data['priceDiscount']) {
+        if ($data['price_discount']) {
             $this->storeData($data, $product, 1);
         } else {
             $this->info($product->title." Price hasn't change");
@@ -110,11 +113,11 @@ class PriceChangeCommand extends Command
     {
         $pivot = $product->priceChanges->where('pivot', 1)->first();
 
-        if ($data['priceDiscount'] < $pivot->price_discount) {
+        if ($data['price_discount'] < $pivot->price_discount) {
             $pivot->pivot = 0;
             $pivot->save();
             $this->storeData($data, $product, 1);
-        } elseif ($data['priceDiscount'] > $pivot->price_discount) {
+        } elseif ($data['price_discount'] > $pivot->price_discount) {
             $this->storeData($data, $product, 0);
         } elseif ($data['price'] < $pivot->price) {
             $this->storeData($data, $product, 1);
@@ -132,7 +135,7 @@ class PriceChangeCommand extends Command
         PriceChange::create([
             'item_id' => $product->id,
             'price' => $data['price'],
-            'price_discount' => $data['priceDiscount'],
+            'price_discount' => $data['price_discount'],
             'discount' => $data['discount'],
             'pivot' => $pivot,
         ]);

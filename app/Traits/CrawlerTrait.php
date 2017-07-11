@@ -111,13 +111,14 @@ trait CrawlerTrait
         try {
             $crawler = new Crawler($html);
             //data crawling from style
+
             $data = [
                 'title'         => $crawler->filter($this->style['title'])->text(),
                 'brand'         => $crawler->filter($this->style['brand'])->text(),
                 'sku'           => $crawler->filter($this->style['sku'])->attr('value'),
                 'price'         => $crawler->filter($this->style['price'])->count()?
                     preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()) : '',
-                'priceDiscount' => $crawler->filter($this->style['priceDiscount'])->count()?
+                'price_discount' => $crawler->filter($this->style['priceDiscount'])->count()?
                     preg_replace('/\D/', "", $crawler->filter($this->style['priceDiscount'])->text()) :
                     preg_replace('/\D/', "", $crawler->filter($this->style['price'])->text()),
                 'image_link'    => $crawler->filter($this->style['image'])->attr('src'),
@@ -126,8 +127,8 @@ trait CrawlerTrait
                     $crawler->filter($this->style['category-lastChild'])->text(),
                 'url'           => $url
             ];
-            $data['discount'] = $data['priceDiscount']?
-                round(($data['price'] - $data['priceDiscount']) / $data['price'] * 100) : 0;
+            $data['discount'] = $data['price_discount']?
+                round(($data['price'] - $data['price_discount']) / $data['price'] * 100) : 0;
 
             return $data;
         } catch (Exception $e) {
