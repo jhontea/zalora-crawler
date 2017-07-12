@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12 sub-nav">
             <div class="col-md-offset-1">
                 <ul>
-                <li class="sub-title">Semua</li>
+                <a href="{{ route('category-all') }}"><li class="sub-title">Semua</li></a>
                 @foreach(App\Product::getCachedCategory() as $key => $category)
                     @if(strtolower($key) != "style")
                     <li class="sub-title">{{ $key }} <!-- ({{ $category->count() }}) --></li>

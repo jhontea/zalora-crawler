@@ -14,5 +14,6 @@ Route::get('/', 'HomeController@index');
 Route::get('detail/{sku}', 'HomeController@show');
 Route::post('create', ['uses' => 'HomeController@create', 'as' => 'create']);
 Route::post('crawl', 'HomeController@crawl');
+Route::get('category', ['uses' => 'HomeController@category', 'as' => 'category-all']);
 
 Route::get('test', ['uses' => 'TestController@index', 'as' => 'test.index']);

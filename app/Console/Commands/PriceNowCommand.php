@@ -48,16 +48,18 @@ class PriceNowCommand extends Command
             //get data from crawling
             $data = $this->crawlingData($product->url);
 
-            if ($product->priceChanges->count()) {
-                if ($product->priceChanges->count() < 2) {
-                    //compare with product
-                    $this->compareWithProduct($product, $data);
-                } else {
-                    //compare price change
-                    $this->compareWithPriceChange($product, $data);
-                }
-            } else {
-                $this->updateData($product, $data, 'equal');
+            if ($data) {
+                if ($product->priceChanges->count()) {
+                    if ($product->priceChanges->count() < 2) {
+                        //compare with product
+                        $this->compareWithProduct($product, $data);
+                    } else {
+                        //compare price change
+                        $this->compareWithPriceChange($product, $data);
+                    }
+                } /*else {
+                    $this->updateData($product, $data, 'equal');
+                }*/
             }
         }
     }

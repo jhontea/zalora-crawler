@@ -20,8 +20,14 @@ class HomeController extends Controller
     public function index()
     {
         //$products = $this->products->getCachedProducts();
-        $products = $this->products->paginate(12);
+        //$products = $this->products->paginate(12);
 
+        return view('home', compact('products'));
+    }
+
+    public function category()
+    {
+        $products = $this->products->paginate(12);
         return view('index', compact('products'));
     }
 
