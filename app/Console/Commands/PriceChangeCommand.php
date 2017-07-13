@@ -57,7 +57,9 @@ class PriceChangeCommand extends Command
                 $this->checkDataExist($data, $product);
                 if ($key % 20 == 0) {
                     sleep(3);
-                }
+                } /*elseif ($key == 23) {
+                    break;
+                }*/
             }
         }
     }
@@ -66,7 +68,9 @@ class PriceChangeCommand extends Command
     {
         if (session()->has('errorURL')) {
             //update to non-active
-            $product->update(['is_active' => 0]);
+            if (session()->pull('errorCode') == 404) {
+                $product->update(['is_active' => 0]);
+            }
 
             //url not available, SEND EMAIL
             $data = $product;
@@ -87,11 +91,18 @@ class PriceChangeCommand extends Command
     public function checkDataExist($data, $product)
     {
         //exist data
-        $exist = $product->where('price', $data['price'])->where('price_discount', $data['price_discount'])->exists();
+        if ($product->priceChanges->count()) {
+            $exist = $product->priceChanges->last()
+            ->where('price', $data['price'])->where('price_discount', $data['price_discount'])->exists();
+        } else {
+            $exist = $product->where('price', $data['price'])
+            ->where('price_discount', $data['price_discount'])->exists();
+        }
 
         if ($exist) {
             $this->info($product->title." Price hasn't change");
         } else {
+            //print($product->id);
             if ($product->priceChanges->count()) {
                 $this->oldPriceChange($data, $product);
             } else {

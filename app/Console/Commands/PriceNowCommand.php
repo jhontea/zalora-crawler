@@ -44,7 +44,7 @@ class PriceNowCommand extends Command
         //get all active products
         $products = Product::where('is_active', 1)->get();
 
-        foreach ($products as $product) {
+        foreach ($products as /*$key =>*/ $product) {
             //get data from crawling
             $data = $this->crawlingData($product->url);
 
@@ -57,10 +57,12 @@ class PriceNowCommand extends Command
                         //compare price change
                         $this->compareWithPriceChange($product, $data);
                     }
-                } /*else {
-                    $this->updateData($product, $data, 'equal');
-                }*/
+                }
             }
+
+            /*if ($key == 23) {
+                break;
+            }*/
         }
     }
 

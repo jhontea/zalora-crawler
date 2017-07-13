@@ -22,7 +22,7 @@ class HomeController extends Controller
         //$products = $this->products->getCachedProducts();
         //$products = $this->products->paginate(12);
 
-        return view('home', compact('products'));
+        return view('home');
     }
 
     public function category()

@@ -83,13 +83,16 @@ trait CrawlerTrait
                 if ($e->getCode() == 404) {
                     //url is gone
                     session()->put('errorURL', 'URL not available');
+                    session()->put('errorCode', 404);
                 } else {
                     if (array_key_exists('Host', $e->getRequest()->getHeaders())) {
                         //check connection
                         session()->put('errorURL', 'Time has running out. Please check the connection');
+                        session()->put('errorCode', 500);
                     } else {
                         //url must be using http or https
                         session()->put('errorURL', 'Must be a valid URL.');
+                        session()->put('errorCode', 500);
                     }
                 }
                 $maxCheck--;
