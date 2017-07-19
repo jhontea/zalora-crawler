@@ -1,3 +1,8 @@
+    <?php
+        if (!isset($category)) {
+            $category = "";
+        }
+    ?>
     <div class="col-md-12 col-sm-12 col-xs-12 nav">
         <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 menu">
             <h1 class="title"><a href="{{ asset('/') }}">Zalora Crawler</a></h1>
@@ -7,10 +12,10 @@
         <div class="col-md-12 col-sm-12 col-xs-12 sub-nav">
             <div class="col-md-offset-1">
                 <ul>
-                <a href="{{ route('category-all') }}"><li class="sub-title">Semua</li></a>
-                @foreach(App\Product::getCachedCategory() as $key => $category)
+                <li class="sub-title"><a class="sub-nav-links @if($category == 'all') active @endif" href="{{ route('category', 'all') }}">Semua</a></li>
+                @foreach(App\Product::getCachedCategory() as $key => $categories)
                     @if(strtolower($key) != "style")
-                    <li class="sub-title">{{ $key }} <!-- ({{ $category->count() }}) --></li>
+                        <li class="sub-title"><a class="sub-nav-links @if($category == $key) active @endif"  href="{{ route('category', $key) }}">{{ $key }}</a> <!-- ({{ $categories->count() }}) --></li>
                     @endif
                 @endforeach
                 </ul>

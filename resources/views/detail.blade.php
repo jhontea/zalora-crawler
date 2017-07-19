@@ -16,11 +16,11 @@
                 </div>
                 <div class="col-md-12">
                     @if($product->priceNow)
-                        <p class="@if($product->priceNow['price_discount']) price-striketrough @endif item-price">
-                            Rp {{ number_format((float)$product->priceNow['price'], 0, '', '.') }}
+                        <p class="@if($product->priceNow['price_discount'] != $product->priceNow['price']) price-striketrough @endif">
+                            <em>Rp {{ number_format((float)$product->priceNow['price'], 0, '', '.') }} </em>
                         </p>
-                        <p class="discount-price item-price">
-                            {{ $product->priceNow['price_discount']? 'Rp '.number_format((float)$product->priceNow['price_discount'], 0, '', '.') : ' ' }}
+                        <p class="discount-price">
+                            <em>{{ ($product->priceNow['price_discount'] != $product->priceNow['price'])? 'Rp '.number_format((float)$product->priceNow['price_discount'], 0, '', '.') : ' ' }}</em>
                         </p>
                     @endif
                 </div>
@@ -53,22 +53,13 @@
 
 
 <script>
-@if($product->priceChanges->count() > 5)
-<?php
-    $skip = $product->priceChanges->count() - 5;
-?>
-@else
-<?php
-    $skip = 0;
-?>
-@endif
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [
             "{{ strftime('%e %b %Y', strtotime($product->created_at)) }}",
-            @foreach($product->priceChanges()->skip($skip)->take(5)->get() as $priceChange)
+            @foreach($priceChanges as $priceChange)
             "{{ strftime('%e %b %Y', strtotime($priceChange->created_at)) }}",
             @endforeach
         ],
@@ -77,7 +68,7 @@ var myChart = new Chart(ctx, {
             data: [{
                 y: '{{ $product->price }}'
             },
-            @foreach($product->priceChanges()->skip($skip)->take(5)->get() as $priceChange)
+            @foreach($priceChanges as $priceChange)
             {
                 y: '{{ $priceChange->price }}'
             },
@@ -91,7 +82,7 @@ var myChart = new Chart(ctx, {
             data: [{
                 y: '{{ $product->price_discount }}'
             },
-            @foreach($product->priceChanges()->skip($skip)->take(5)->get() as $priceChange)
+            @foreach($priceChanges as $priceChange)
             {
                 y: '{{ $priceChange->price_discount }}'
             },

@@ -73,7 +73,7 @@ trait CrawlerTrait
     public function checkUrl($url)
     {
         $client = new Client();
-        $maxCheck = 5;
+        $maxCheck = 10;
 
         while ($maxCheck) {
             try {
@@ -97,6 +97,7 @@ trait CrawlerTrait
                 }
                 $maxCheck--;
             }
+            //sleep(1);
         }
         return 0;
     }
@@ -114,7 +115,6 @@ trait CrawlerTrait
         try {
             $crawler = new Crawler($html);
             //data crawling from style
-
             $data = [
                 'title'         => $crawler->filter($this->style['title'])->text(),
                 'brand'         => $crawler->filter($this->style['brand'])->text(),

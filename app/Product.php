@@ -35,7 +35,7 @@ class Product extends Model
     public static function getCachedProducts()
     {
         $listProducts = Cache::rememberForever('list_products', function () {
-            return Product::orderBy('created_at', 'asc')->paginate(12);
+            return static::with(['priceChanges', 'priceNow'])->get();
         });
         return $listProducts;
     }
@@ -43,7 +43,7 @@ class Product extends Model
     public static function getCachedCategory()
     {
         $listCategories = Cache::rememberForever('list_categories', function () {
-            return Product::all()->groupBy('category');
+            return static::all()->groupBy('category');
         });
         return $listCategories;
     }

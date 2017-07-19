@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\PriceNow;
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Cache;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,22 +20,20 @@ class HomeController extends Controller
 
     public function index()
     {
-        //$products = $this->products->getCachedProducts();
-        //$products = $this->products->paginate(12);
-
         return view('home');
-    }
-
-    public function category()
-    {
-        $products = $this->products->paginate(12);
-        return view('index', compact('products'));
     }
 
     public function show($sku)
     {
-        $product = $this->products->where('sku', $sku)->first();
-        return view('detail', compact('product'));
+        $product = $this->products->getCachedProducts()->where('sku', $sku)->first();
+
+        ($product->priceChanges->count() > 5)?
+        ($skip = $product->priceChanges->count() - 5) :
+        $skip = 0;
+
+        $priceChanges = $product->priceChanges()->skip($skip)->take(5)->get();
+
+        return view('detail', compact('product', 'priceChanges'));
     }
 
     public function create()
@@ -50,6 +49,24 @@ class HomeController extends Controller
         ]);
 
         return redirect('/');
+    }
+
+    public function category($category = 'all')
+    {
+        if ($category == 'all') {
+            $products = $this->products->paginate(12);
+            /*$currentPage = request()->get('page') ? (int)request()->get('page') : 1;
+            $products = Cache::remember('products-' . $currentPage, 10, function (){
+                return Product::with(['priceNow'])->paginate(12);
+            });*/
+        } else {
+            $products = $this->products->where('category', $category)->paginate(12);
+            /*$currentPage = request()->get('page') ? (int)request()->get('page') : 1;
+            $products = Cache::remember('products-category:' . $currentPage, 10, function () use ($category){
+                return Product::with(['priceNow'])->where('category', $category)->paginate(12);
+            });*/
+        }
+        return view('index', compact('products', 'category'));
     }
 
     public function crawl()

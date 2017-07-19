@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index');
-Route::get('detail/{sku}', 'HomeController@show');
+Route::get('/', ['uses' => 'HomeController@index', 'as' => 'index']);
+Route::get('category/{category}', ['uses' => 'HomeController@category', 'as' => 'category']);
+Route::get('detail/{sku}', ['uses' => 'HomeController@show', 'as' => 'show']);
+
+Route::post('crawl', ['uses' => 'HomeController@crawl', 'as' => 'crawl']);
 Route::post('create', ['uses' => 'HomeController@create', 'as' => 'create']);
-Route::post('crawl', 'HomeController@crawl');
-Route::get('category', ['uses' => 'HomeController@category', 'as' => 'category-all']);
 
 Route::get('test', ['uses' => 'TestController@index', 'as' => 'test.index']);

@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\LinkProduct;
+use App\Mail\SendNotification;
 use App\Product;
+use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -131,9 +133,9 @@ class ProductNewCommand extends Command
 
     public function sendNotification($data, $type)
     {
-        Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
-            $message->to('hafizh@suitmedia.com', 'hafizh')
-                ->subject('Zalora Product Info');
-        });
+        $title = "Zalora Product Info";
+        $when = Carbon::now()->addSecond(5);
+        $this->info('send email after 5 second');
+        Mail::to('hafizh@suitmedia.com', 'hafizh')->later($when, new SendNotification($data, $type, $title));
     }
 }

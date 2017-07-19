@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\SendNotification;
 use App\PriceChange;
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Mail;
 
@@ -57,9 +59,7 @@ class PriceChangeCommand extends Command
                 $this->checkDataExist($data, $product);
                 if ($key % 20 == 0) {
                     sleep(3);
-                } /*elseif ($key == 23) {
-                    break;
-                }*/
+                }
             }
         }
     }
@@ -72,18 +72,18 @@ class PriceChangeCommand extends Command
                 $product->update(['is_active' => 0]);
             }
 
-            //url not available, SEND EMAIL
             $data = $product;
             $data['error'] =  session()->pull('errorURL');
-
             $this->info(session()->get('errorURL'));
+
+            //url not available, SEND EMAIL
             $this->sendNotification($data, 'error');
         } elseif (session()->has('errorNode')) {
-            //style has change, SEND EMAIL
             $data = $product;
             $data['error'] = session()->pull('errorNode');
-
             $this->info(session()->get('errorNode'));
+
+            //style has change, SEND EMAIL
             $this->sendNotification($data, 'error');
         }
     }
@@ -156,9 +156,13 @@ class PriceChangeCommand extends Command
 
     public function sendNotification($data, $type)
     {
-        Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
+        /*Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
             $message->to('hafizh@suitmedia.com', 'hafizh')
                 ->subject('Zalora Change Price');
-        });
+        });*/
+        $title = "Zalora Change Price";
+        $when = Carbon::now()->addSecond(5);
+        $this->info('send email after 5 second');
+        Mail::to('hafizh@suitmedia.com', 'hafizh')->later($when, new SendNotification($data, $type, $title));
     }
 }

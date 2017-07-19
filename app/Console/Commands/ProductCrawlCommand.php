@@ -3,9 +3,11 @@
 namespace App\Console\Commands;
 
 use App\LinkProduct;
+use App\Mail\SendNotification;
 use App\PriceNow;
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
 use Mail;
@@ -130,9 +132,14 @@ class ProductCrawlCommand extends Command
 
     public function sendNotification($data, $type)
     {
-        Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
+        /*Mail::send('emails.'.$type, compact('data'), function ($message) use ($data) {
             $message->to('hafizh@suitmedia.com', 'hafizh')
                 ->subject('Zalora Product Crawl');
-        });
+        });*/
+
+        $title = "Zalora Product Info";
+        $when = Carbon::now()->addSecond(5);
+        $this->info('send email after 5 second');
+        Mail::to('hafizh@suitmedia.com', 'hafizh')->later($when, new SendNotification($data, $type, $title));
     }
 }

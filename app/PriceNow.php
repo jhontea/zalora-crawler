@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class PriceNow extends Model
@@ -18,5 +19,14 @@ class PriceNow extends Model
     public function product()
     {
         return $this->belongsTo(App\Product::class, 'item_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function () {
+            Cache::forget('list_products');
+        });
     }
 }
