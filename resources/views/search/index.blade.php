@@ -3,32 +3,6 @@
 @section('page-content')
     <div class="body">
         <div class="all-product">
-            <!-- <div class="text-center">
-                {!! Form::open(['url' => 'crawl']) !!}
-                {!! Form::text('url', '', ['placeholder' => 'http:// or https://']) !!}
-                {!! Form::submit('Submit') !!}
-                {!! Form::close() !!}
-
-                <div class="message">
-                @if(isset($data))
-                    @if(empty($data))
-                        @if(session()->has('errorURL'))
-                        <div class="alert alert-danger alert-dismissable fade in">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            {{ session()->pull('errorURL') }}
-                        </div>
-                        @elseif(session()->has('errorNode'))
-                        <div class="alert alert-danger alert-dismissable fade in">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            {{ session()->pull('errorNode') }}
-                        </div>
-                        @endif
-                    @else
-                        @include('crawl')
-                    @endif
-                @endif
-                </div>
-            </div> -->
 
             <!-- Search Box -->
             <div class="row">
@@ -44,6 +18,8 @@
                 </div>
             </div>
             <!-- End of Search Box-->
+
+            <div class="text-center">Your search of: {{ $data }}</div>
 
             @foreach($products as $product)
                 <div class="col-md-3 col-sm-6 item">
@@ -97,16 +73,4 @@
             <div class="text-center">{{ $products->links() }}</div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function(e){
-            $('.search-panel .dropdown-menu').find('a').click(function(e) {
-                e.preventDefault();
-                var param = $(this).attr("href").replace("#","");
-                var concept = $(this).text();
-                $('.search-panel span#search_concept').text(concept);
-                $('.input-group #search_param').val(param);
-            });
-        });
-    </script>
 @endsection

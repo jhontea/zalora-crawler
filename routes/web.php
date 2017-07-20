@@ -11,6 +11,9 @@
 |
 */
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'index']);
+
+Route::any('search', ['uses' => 'SearchController@search', 'as' => 'search']);
+
 Route::get('category/{category}', ['uses' => 'HomeController@category', 'as' => 'category']);
 Route::get('detail/{sku}', ['uses' => 'HomeController@show', 'as' => 'show']);
 

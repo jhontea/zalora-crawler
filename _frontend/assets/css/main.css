@@ -66,6 +66,16 @@ body {
     list-style: none;
 }
 
+/* Search */
+.btn-black {
+    background: #333;
+}
+
+.white {
+    color: #fff;
+}
+
+/* Product */
 .all-product.footer {
     float: right;
     text-align: right;

@@ -4,9 +4,101 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6f95b1641a4bdad9c55499585b84898",
-    "content-hash": "1b93289ad6dee0dd671d79cbcaa9527f",
+    "hash": "78d0878354b5e2f913804bec245e10f7",
+    "content-hash": "7f960472ac30f7be05dc65f99b0268bc",
     "packages": [
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "1.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "77aeb5f3856c1460432e2ccb9df5634c37c0b9f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/77aeb5f3856c1460432e2ccb9df5634c37c0b9f3",
+                "reference": "77aeb5f3856c1460432e2ccb9df5634c37c0b9f3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "satooshi/php-coveralls": "0.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AlgoliaSearch": "src/",
+                    "AlgoliaSearch\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                },
+                {
+                    "name": "Ryan T. Catlin",
+                    "email": "ryan.catlin@gmail.com"
+                },
+                {
+                    "name": "Jonathan H. Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "homepage": "https://github.com/algolia/algoliasearch-client-php",
+            "time": "2017-05-22 14:50:28"
+        },
+        {
+            "name": "damiantw/laravel-scout-mysql-driver",
+            "version": "v1.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damiantw/laravel-scout-mysql-driver.git",
+                "reference": "c1a0736ad740d48ae599554b5488f72891b1aa9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damiantw/laravel-scout-mysql-driver/zipball/c1a0736ad740d48ae599554b5488f72891b1aa9f",
+                "reference": "c1a0736ad740d48ae599554b5488f72891b1aa9f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.3.*|5.4.*",
+                "laravel/scout": "^2.0|^3.0",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DamianTW\\MySQLScout\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Crisafulli",
+                    "email": "damian.crisafulli@troyweb.com"
+                }
+            ],
+            "description": "MySQL driver for Laravel Scout.",
+            "time": "2017-07-13 05:43:58"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -542,6 +634,71 @@
                 "laravel"
             ],
             "time": "2017-04-28 15:40:01"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v3.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "b899432186096dacc90700d5320d95cc3db1efe1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/b899432186096dacc90700d5320d95cc3db1efe1",
+                "reference": "b899432186096dacc90700d5320d95cc3db1efe1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "~5.4",
+                "illuminate/contracts": "~5.4",
+                "illuminate/database": "~5.4",
+                "illuminate/pagination": "~5.4",
+                "illuminate/queue": "~5.4",
+                "illuminate/support": "~5.4",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "algolia/algoliasearch-client-php": "^1.10",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^1.10)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2017-07-12 18:42:43"
         },
         {
             "name": "laravel/tinker",
@@ -4335,7 +4492,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/suitmedia/php-code-standards/zipball/a227d35a8739421e281d72a2d371c275d18792fb",
+                "url": "https://api.github.com/repos/suitmedia/php-code-standards/zipball/c6df85c67e5778ffb0bfd6a649678afc0d97cda6",
                 "reference": "a227d35a8739421e281d72a2d371c275d18792fb",
                 "shasum": ""
             },
