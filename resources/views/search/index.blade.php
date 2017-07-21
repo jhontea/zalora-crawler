@@ -4,22 +4,9 @@
     <div class="body">
         <div class="all-product">
 
-            <!-- Search Box -->
-            <div class="row">
-                <div class="col-xs-8 col-xs-offset-2">
-                {!! Form::open(['route' => 'search']) !!}
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="searchWord" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-black" type="submit"><span class="glyphicon glyphicon-search white"></span></button>
-                        </span>
-                    </div>
-                {!! Form::close() !!}
-                </div>
-            </div>
-            <!-- End of Search Box-->
+            @include('_include.search')
 
-            <div class="text-center">Your search of: {{ $data }}</div>
+            <div class="text-center">Pencarian {{ $data }} : ({{ $products->total() }} barang ditemukan)</div>
 
             @foreach($products as $product)
                 <div class="col-md-3 col-sm-6 item">
@@ -70,7 +57,9 @@
                     </div>
                 </div>
             @endforeach
-            <div class="text-center">{{ $products->links() }}</div>
+            <div class="col-md-12">
+                <div class="text-center">{{ $products->links() }}</div>
+            </div>
         </div>
     </div>
 @endsection
