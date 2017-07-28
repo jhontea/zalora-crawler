@@ -35,7 +35,11 @@ body {
     background: black;
     padding: 0px;
     position: fixed;
-    z-index: 998;
+    z-index: 900;
+}
+
+.nav-button-mobile {
+    display: none;
 }
 
 .sub-nav {
@@ -76,7 +80,20 @@ body {
 
 /* Search */
 .btn-black {
-    background: #333;
+    background: #000;
+}
+
+.btn-white {
+    background: #fff;
+}
+
+.nav-search {
+    margin: 17px 0px 0px 350px;
+    padding: 0px 0px 0px 85px;
+}
+.search-box {
+    padding: 0px 290px 0px 296px;
+    display: none;
 }
 
 .white {
@@ -89,6 +106,7 @@ body {
     text-align: right;
     margin-top: 10px;
     margin-bottom: 20px;
+    margin-right: 15px;
 }
 
 .footer-info > li{
@@ -105,15 +123,19 @@ li.last {
 }
 
 #footer {
-    margin-top: 20px;
-    margin-bottom: 5px;
+    padding: 0px 10px 0px 0px;
+    margin: 25px 0px 0px 100px;
 }
 
 .banner {
+    padding: 95px 100px 0px 100px;
+}
+
+.banner-img {
     width: 100%;
 }
 
-.banner:hover {
+.banner-img:hover {
     opacity:0.8;
 }
 
@@ -135,7 +157,7 @@ h2 {
     font-size: 16px;
     display: block;
     margin: 0 0 10px 0;
-    padding: 0 0 5px 0;
+    padding: 5px 0 5px 0;
     border-bottom: 1px solid #ccc;
 }
 
@@ -187,12 +209,12 @@ p.discount-price {
 }
 
 .all-product {
-    margin: 0px 10px;
+    margin: 0px 5px;
     padding: 0px 80px;
 }
 
 .item {
-    padding: 30px 20px;
+    padding: 20px 20px;
     margin: 0px 0px 0px 0px;
 }
 
@@ -255,7 +277,7 @@ p.item-price {
 }
 
 .body {
-    padding-top: 130px;
+    padding-top: 80px;
 }
 
 /* pagination */
@@ -283,9 +305,74 @@ p.item-price {
         display: block;
     }
 
+    .nav-button-mobile {
+        display: inline;
+        padding-right: 15px;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 21;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 70px;
+    }
+
+    .sidenav.open {
+        width: 250px;
+    }
+
+    #nav-overlay.open {
+        width: 100%;
+    }
+
+    .sidenav a {
+        padding: 8px 4px 4px 28px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #333;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .sidenav a:hover, .offcanvas a:focus{
+        color: #f1f1f1;
+    }
+
     .all-product {
         margin: 0px 10px;
         padding: 0px 20px;
+    }
+
+    .banner {
+        padding: 57px 0px 0px 0px;
+    }
+
+    #nav-overlay {
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        z-index: 12;
+        background-color: black;
+        width: 0%;
+        opacity: 0.7;
+    }
+
+    .banner-img {
+        width: 100%;
     }
 
     .sub-title {
@@ -294,28 +381,66 @@ p.item-price {
     }
 
     .sub-nav {
-        padding-top: 0px;
-        padding-left: 40px;
-        height: 32px;
+        display: none;
     }
 
     h1.title {
         font-size: 20px;
-        padding: 0px 0px 0px 38px;
+        padding: 0px 0px 2px 15px;
         margin-bottom: 15px;
     }
 
+    h2 {
+        font-size: 12px;
+        display: block;
+        margin: 0 0 10px 0;
+        padding: 5px 0 5px 0;
+        border-bottom: 1px solid #ccc;
+        height: 36px;
+    }
+
+    .zalora-button {
+        border: 0px solid #fff;
+        padding: 5px 20px;
+        background-color: #333;
+        color: #fff;
+        text-transform: uppercase;
+        margin: o 0;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .search-box {
+        display: block;
+        padding: 0px 20px 0px 20px;
+    }
+
     .body {
-        padding-top: 115px;
+        padding-top: 80px;
     }
 
     .all-product {
         margin: 0px 10px;
-        padding: 0px 20px;
+        padding: 0px 0px;
+    }
+
+    .product-title {
+        color: #494949;
+        font-size: 14px;
+        margin-top: 10px;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .item {
         padding: 20px 20px;
         margin: 0px 0px 0px 0px;
+    }
+
+    .pagination {
+        padding: 0px 20px 0px 0px;
     }
 }

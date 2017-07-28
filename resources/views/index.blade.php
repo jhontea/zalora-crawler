@@ -33,7 +33,7 @@
             @include('_include.search')
 
             @foreach($products as $product)
-                <div class="col-md-3 col-sm-2 item">
+                <div class="col-md-3 col-sm-2 col-xs-6 item">
                     <div id="overlay">
                         <a href="{{ asset('detail/'.$product->sku) }}">
                             <div class="view-detail">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             @endforeach
-
+            <div class="clear"></div>
             <div class="text-center">{{ $products->links() }}</div>
         </div>
     </div>
