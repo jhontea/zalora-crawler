@@ -3,10 +3,16 @@
 @section('page-content')
     <div class="body">
         <div class="all-product">
-            <!-- <img class="banner" src="http://www.placehold.it/1100x500" /> -->
-            <a href="https://www.zalora.co.id/men/special-price/?cmpgn_one=branded-clearance&csa=brandedclearance" target="_blank">
-                <img class="banner" src="https://static-id.zacdn.com/cms/evergage/0707_996x500_brandedclearance_men.jpg" />
-            </a>
+            <div class="img-responsive-desktop">
+                <a href="https://www.zalora.co.id/men/special-price/?cmpgn_three=payday-extra20&csa=paydayextratwenty" target="_blank">
+                    <img class="banner" src="https://static-id.zacdn.com/cms/evergage/996x500_PAYDAY_MEN.jpg" />
+                </a>
+            </div>
+            <div class="img-responsive-mobile">
+                <a href="https://www.zalora.co.id/men/special-price/?cmpgn_three=payday-extra20&csa=paydayextratwenty" target="_blank">
+                    <img class="banner" src="https://static-id.zacdn.com/cms/evergage/600x600_PAYDAY_MEN1.jpg" />
+                </a>
+            </div>
         </div>
     </div>
 @endsection

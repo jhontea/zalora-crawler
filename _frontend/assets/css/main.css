@@ -13,6 +13,14 @@ body {
     margin: 0;
 }
 
+.img-responsive-desktop {
+    display: block;
+}
+
+.img-responsive-mobile {
+    display: none;
+}
+
 .menu {
     padding: 0px 0px 0px 0px;
 }
@@ -267,6 +275,19 @@ p.item-price {
 }
 
 @media screen and (max-width: 480px) {
+    .img-responsive-desktop {
+        display: none;
+    }
+
+    .img-responsive-mobile {
+        display: block;
+    }
+
+    .all-product {
+        margin: 0px 10px;
+        padding: 0px 20px;
+    }
+
     .sub-title {
         font-size: 5px;
         padding: 4px 7px 0px 0px;
@@ -274,7 +295,7 @@ p.item-price {
 
     .sub-nav {
         padding-top: 0px;
-        padding-left: 0px;
+        padding-left: 40px;
         height: 32px;
     }
 
@@ -282,5 +303,19 @@ p.item-price {
         font-size: 20px;
         padding: 0px 0px 0px 38px;
         margin-bottom: 15px;
+    }
+
+    .body {
+        padding-top: 115px;
+    }
+
+    .all-product {
+        margin: 0px 10px;
+        padding: 0px 20px;
+    }
+
+    .item {
+        padding: 20px 20px;
+        margin: 0px 0px 0px 0px;
     }
 }
