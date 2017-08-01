@@ -28,5 +28,9 @@ class PriceNow extends Model
         static::saved(function () {
             Cache::forget('list_products');
         });
+
+        static::updated(function () {
+            Cache::forget('list_products');
+        });
     }
 }

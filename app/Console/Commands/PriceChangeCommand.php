@@ -68,20 +68,20 @@ class PriceChangeCommand extends Command
     {
         if (session()->has('errorURL')) {
             //update to non-active
-            if (session()->pull('errorCode') == 404) {
+            if (session()->get('errorCode') == 404) {
                 $product->update(['is_active' => 0]);
             }
 
             $data = $product;
-            $data['error'] =  session()->pull('errorURL');
-            $this->info(session()->get('errorURL'));
+            $data['error'] =  session()->get('errorURL');
+            $this->info(session()->pull('errorURL'));
 
             //url not available, SEND EMAIL
             $this->sendNotification($data, 'error');
         } elseif (session()->has('errorNode')) {
             $data = $product;
-            $data['error'] = session()->pull('errorNode');
-            $this->info(session()->get('errorNode'));
+            $data['error'] = session()->get('errorNode');
+            $this->info(session()->pull('errorNode'));
 
             //style has change, SEND EMAIL
             $this->sendNotification($data, 'error');
