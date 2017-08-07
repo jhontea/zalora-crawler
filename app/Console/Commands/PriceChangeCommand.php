@@ -6,6 +6,7 @@ use App\Mail\SendNotification;
 use App\PriceChange;
 use App\Product;
 use App\Traits\CrawlerTrait;
+use Cache;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Mail;
@@ -150,6 +151,10 @@ class PriceChangeCommand extends Command
             'discount' => $data['discount'],
             'pivot' => $pivot,
         ]);
+
+        PriceChange::saved(function () {
+            Cache::forget('list_products');
+        });
 
         $this->sendNotification($data, 'change');
     }

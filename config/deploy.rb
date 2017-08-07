@@ -35,6 +35,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('public/files', 'storage/framewor
 # set :keep_releases, 5
 set :keep_releases, 3
 
+set :laravel_server_user, 'www-data'
+
 namespace :deploy do
 
   desc 'Restart application'

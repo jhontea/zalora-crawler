@@ -66,7 +66,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('style:change')->dailyAt('7:00');
         $schedule->command('product:new')->dailyAt('6:00');
         $schedule->command('product:crawl')->dailyAt('6:00');
-        foreach (['06:00', '09:30', '10:00', '17:00'] as $time) {
+        foreach (['06:00', '10:00', '10:30', '11:00', '17:00'] as $time) {
             $schedule->command('cache:clear')->dailyAt($time);
         }
         /*$schedule->command('email:test')->everyFiveMinutes();*/
